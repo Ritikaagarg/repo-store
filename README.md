@@ -8,7 +8,7 @@ This is a react native application with the login with github functionality and 
 - Android Studio
 
 ## OAuth related configuration to register a GitHub OAuth app
-Add .env file containing variables named - 
+Add .env file in the root folder containing variables named - 
 - GITHUB_CLIENT_ID (for client id) 
 - GITHUB_CLIENT_SECRET (for client secret) got from github oauth.
 
