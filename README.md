@@ -8,7 +8,7 @@ This is a react native application with the login with github functionality and 
 - Android Studio
 
 ## OAuth related configuration to register a GitHub OAuth app
-Add .env file containing variables named - 
+Add .env file in the root folder containing variables named as - 
 - GITHUB_CLIENT_ID (for client id) 
 - GITHUB_CLIENT_SECRET (for client secret) got from github oauth.
 
@@ -27,6 +27,7 @@ For more reference, check - https://reactnative.dev/docs/environment-setup
 - [Moment] - used for formatting time strings
 - [React-native-config] - used to access environment variables
 - [React-native-webview] - used to load webpage
+- [Axios] - used to make API requests
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job.)
 
@@ -35,3 +36,4 @@ For more reference, check - https://reactnative.dev/docs/environment-setup
 [Moment]: <https://www.npmjs.com/package/moment>
 [React-native-config]: <https://www.npmjs.com/package/react-native-config>
 [React-native-webview]: <https://www.npmjs.com/package/react-native-webview>
+[Axios]: <https://www.npmjs.com/package/axios>
