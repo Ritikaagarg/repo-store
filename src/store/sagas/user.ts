@@ -11,9 +11,14 @@ import {
   GET_REPOS,
   LOGOUT,
   logoutSuccess,
+  createRepoRequested,
+  createRepoFailure,
+  createRepoSuccess,
+  CREATE_REPO,
 } from '../actions/user-actions-types';
 import httpClient from './http-client';
 import Config from 'react-native-config';
+import { navigate } from '../../navigation/root-navigation';
 
 const {GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET} = Config;
 
@@ -89,6 +94,37 @@ function* getRepos({payload: {callback} }:any){
   }
 }
 
+function* createRepo({payload: {callback, query} }:any){
+  yield put(createRepoRequested());
+  const payload = {
+    method:'post',
+    url:'https://api.github.com/user/repos',
+    data: query
+  }
+
+  const { error, result } = yield call(httpClient, payload, true);
+  if (error) {
+    if (error.code === 402) {
+      const errorDetail = {
+        code: error.code,
+        ...JSON.parse(error.message),
+      };
+      createRepoFailure(errorDetail.message)
+      Toast.show({ text1: errorDetail.message });
+    } else {
+      createRepoFailure(error)
+      Toast.show({ text1: "There is some issue, please try again" });
+    }
+  } else {
+    Toast.show({ text1: `${query.name} is created successfully` });
+    yield put(createRepoSuccess(result));
+    if(callback){
+      callback()
+    }
+    navigate('Home')
+  }
+}
+
 function* logout(){
   yield put(logoutSuccess())
 }
@@ -98,6 +134,7 @@ function* User() {
     takeLatest(LOGIN, login),
     takeLatest(GET_USER_INFO, getUserInfo),
     takeLatest(GET_REPOS, getRepos),
+    takeLatest(CREATE_REPO, createRepo),
     takeLatest(LOGOUT, logout)
   ]);
 }

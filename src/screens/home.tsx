@@ -7,7 +7,7 @@ import styles from './styles';
 
 const Home = (props)=> {
   const {getUserInfo, logout, user, navigation: { navigate }} = props;
-  
+  const [isLoading, setIsLoading] = useState(false);
   
   useEffect(()=>{
     getUserInfo();
@@ -31,9 +31,17 @@ const Home = (props)=> {
 
   return(
     <View style={styles.homeContainer}>
-      {user?.avatar_url ? <Image source={{uri: user.avatar_url}} onLoadStart={() => <Loader />} style={{width:100, height:100, marginVertical:25}}/> : null}
+      {user?.avatar_url ? 
+      <Image 
+        source={{uri: user?.avatar_url}} 
+        onLoadStart={() => setIsLoading(true)} 
+        onLoadEnd={()=> setIsLoading(false)} 
+        style={{width:100, height:100, marginVertical:25}}
+      /> 
+      : <Loader isLoading={isLoading} />}
       <Text style={styles.displayNameText}>{user?.name ? user.name : "User"}</Text>
       {renderItem("My Repositories", ()=>{navigate("Repos")})}
+      {renderItem("Add new repository", ()=> {navigate("Add Repo")})}
       {renderItem("Logout", ()=>{handleLogout()})}
       {renderItem("FAQs", ()=>{handleFaq()})}
     </View>

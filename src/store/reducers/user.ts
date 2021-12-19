@@ -1,11 +1,13 @@
 import {
+  CREATE_REPO_FAILURE,
+  CREATE_REPO_REQUESTED,
+  CREATE_REPO_SUCCESS,
   GET_REPOS_SUCCESS,
   GET_USER_INFO_SUCCESS,
   LOGIN_FAILURE,
   LOGIN_REQUESTED,
- LOGIN_SUCCESS,
- LOGOUT,
- LOGOUT_SUCCESS
+  LOGIN_SUCCESS,
+  LOGOUT_SUCCESS
 } from '../actions/user-actions-types';
 import AsyncStorage from '@react-native-community/async-storage';
 import Config from 'react-native-config';
@@ -17,7 +19,7 @@ const initialState = {
   client_secret: Config.GITHUB_CLIENT_SECRET,
   loginError: null,
   userToken: null,
-  repos: null
+  repos: null,
 };
 
 // eslint-disable-next-line @typescript-eslint/default-param-last
@@ -56,6 +58,21 @@ export default function user(state = initialState, { payload, type }) {
       return{
         ...state,
         repos: payload
+      }
+
+    case CREATE_REPO_FAILURE:
+      return{
+        ...state
+      }
+
+    case CREATE_REPO_REQUESTED:
+      return{
+        ...state
+      }
+
+    case CREATE_REPO_SUCCESS:
+      return{
+        ...state
       }
 
     case LOGOUT_SUCCESS: 

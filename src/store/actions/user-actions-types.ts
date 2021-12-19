@@ -24,6 +24,18 @@ export const getRepos = createAction(GET_REPOS);
 export const GET_REPOS_SUCCESS = 'GET_REPOS_SUCCESS';
 export const getReposSuccess = createAction(GET_REPOS_SUCCESS);
 
+export const CREATE_REPO = 'CREATE_REPO';
+export const createRepo = createAction(CREATE_REPO);
+
+export const CREATE_REPO_REQUESTED = 'CREATE_REPO_REQUESTED';
+export const createRepoRequested = createAction(CREATE_REPO_REQUESTED);
+
+export const CREATE_REPO_FAILURE = 'CREATE_REPO_FAILURE';
+export const createRepoFailure = createAction(CREATE_REPO_FAILURE);
+
+export const CREATE_REPO_SUCCESS = 'CREATE_REPO_SUCCESS';
+export const createRepoSuccess = createAction(CREATE_REPO_SUCCESS);
+
 export const LOGOUT = 'LOGOUT';
 export const logout = createAction(LOGOUT);
 

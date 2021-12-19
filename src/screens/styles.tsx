@@ -43,7 +43,8 @@ const styles = StyleSheet.create({
   loginContainer: {
     flex:1, 
     justifyContent:'center', 
-    alignItems:'center' 
+    alignItems:'center',
+    backgroundColor:'#FFF'
   },
   loginText: {
     justifyContent:'center', 
@@ -54,7 +55,8 @@ const styles = StyleSheet.create({
   },
   homeContainer: {
     alignItems:"center", 
-    flex:1 
+    flex:1,
+    backgroundColor:'#FFF'
   },
   displayNameText: {
     fontSize:20, 
@@ -67,6 +69,34 @@ const styles = StyleSheet.create({
     borderTopWidth:1, 
     borderColor:'#888'
   },
+  addRepoContainer: {
+    padding:20, 
+    flex:1,
+    backgroundColor:'#FFF'
+  },
+  repoNameText: {
+    fontSize:16, 
+    width:'100%', 
+    marginVertical:20, 
+    borderColor:'#888', 
+    borderWidth:0.5, 
+    padding:15, 
+    borderRadius:5
+  },
+  checkboxContainer: {
+    flexDirection:'row', 
+    alignItems:'center', 
+    margin:10
+  },
+  createButton: {
+    width:'100%', 
+    paddingVertical:15,
+    marginVertical:15, 
+    backgroundColor:'#2196F3', 
+    alignItems:'center', 
+    justifyContent:'center', 
+    borderRadius:10
+  }
 });
 
 export default styles;

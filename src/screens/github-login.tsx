@@ -1,11 +1,9 @@
-import React, { createRef, useState } from 'react';
-import { View } from 'react-native';
+import React, { useState } from 'react';
 import { WebView } from 'react-native-webview';
 import Config from "react-native-config";
 import Loader from '../components/loader';
 import { connect } from 'react-redux';
 import * as userActions from "../store/actions/user-actions-types";
-import styles from './styles';
 
 const GithubLogin =(props)=>{
   const client_id = Config.GITHUB_CLIENT_ID;
@@ -25,17 +23,16 @@ const GithubLogin =(props)=>{
     }
   }
 
-    return (
-      <WebView
-        ref={(ref)=>webviewRef=ref}
-        style={styles.loginContainer}
-        startInLoadingState={true}
-        renderLoading={() => <Loader />}
-        originWhitelist={['https://*', 'git://*']}
-        source={{uri: `https://github.com/login/oauth/authorize?client_id=${client_id}&scope=user%20repo`}}
-        onNavigationStateChange={handleWebViewNavigationStateChange}
-      />
-    )
+  return (
+    <WebView
+      ref={(ref)=>webviewRef=ref}
+      startInLoadingState={true}
+      renderLoading={() => <Loader isLoading={true}/>}
+      originWhitelist={['https://*', 'git://*']}
+      source={{uri: `https://github.com/login/oauth/authorize?client_id=${client_id}&scope=user%20repo`}}
+      onNavigationStateChange={handleWebViewNavigationStateChange}
+    />
+  )
 }
 
 const mapStateToProps = ({ user: { loginError } }) => ({

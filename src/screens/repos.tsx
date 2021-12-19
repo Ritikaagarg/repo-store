@@ -38,10 +38,13 @@ const Repos = (props)=>{
   }
 
   // Fetch the repository data
-  const fetchData = ()=>{
-    setIsLoading(true);
-    getRepos({callback:(result)=>setData(result)});
-    setIsLoading(false);
+  const fetchData = async()=>{
+    await getRepos({callback:(result)=>{
+      setData(result)
+      setIsLoading(false);
+    }
+    });
+    
   }
 
   useEffect(()=>{
@@ -49,7 +52,7 @@ const Repos = (props)=>{
   }, [])
 
   return(
-    <View>
+    <View style={{backgroundColor:'#FFF', flex:1}}>
       <View style={styles.searchBox}>
         <TextInput 
         style={styles.searchInput}
@@ -67,7 +70,7 @@ const Repos = (props)=>{
         onEndReachedThreshold={0.5}
         onRefresh={fetchData}
         refreshing={isLoading}
-        ListEmptyComponent={ data.length===0 && !isLoading ? <Text style={{textAlign:'center'}}>No Repositories found</Text>: null}
+        ListEmptyComponent={ data.length===0 ? <Text style={{textAlign:'center'}}>No Repositories found</Text>: null}
       />}
     </View>
   )

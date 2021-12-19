@@ -1,13 +1,15 @@
 import React from 'react';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
 
-const loader = (isLoading) => {
+const loader = ({isLoading}) => {
   return (
-    isLoading ?
-      <View style={styles.loader}>
-        <ActivityIndicator size="large"  />
-      </View> : null
-  );
+    <View style={styles.loader}>
+    {isLoading ?
+      <ActivityIndicator size="large"  />
+      : null}
+    </View>
+  )
+  ;
 };
 
 export default loader;
@@ -16,7 +18,7 @@ const styles = StyleSheet.create({
   loader: {
     flex:1,
     justifyContent:'center',
-    backgroundColor:'#FFF',
-    alignItems:'center'
+    alignItems:'center',
+    backgroundColor:'#FFF'
   },
 })
